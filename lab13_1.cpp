@@ -17,3 +17,29 @@ int main(){
     cout << "\nMin = " << B[5];
     return 0;
 }
+
+void stat(const double numA[], int Allnum, double numB[]){
+    double Asum = 0, SDsum = 0, Gnum = 1, Hnum = 0;
+    double Max = numA[0];
+    double Min = numA[0];
+    for(int i = 0; i < Allnum; i++ ) Asum  += numA[i];
+    numB[0] = Asum/Allnum;
+
+    for(int i = 0; i < Allnum; i++ ) SDsum += pow(numA[i] - numB[0], 2);
+    numB[1] = sqrt(SDsum/Allnum);
+
+    for(int i = 0; i < Allnum; i++ ) Gnum *= numA[i];
+    numB[2] = pow(Gnum, 1.0/Allnum);
+
+    for(int i = 0; i < Allnum; i++ ){ 
+    Hnum += 1/numA[i];
+
+    if (Max == numA[i]) Max = Max;
+    else if (Max < numA[i]) Max = numA[i];
+    if (Min == numA[i]) Min = Min;
+    else if (Min > numA[i]) Min = numA[i];
+    } 
+    numB[3] = Allnum/Hnum;
+    numB[5] = Min;
+    numB[4] = Max;
+}
